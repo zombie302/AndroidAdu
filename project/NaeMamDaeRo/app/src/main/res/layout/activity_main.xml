@@ -9,5 +9,82 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.administrator.naemamdaero.MainActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
+        <Button
+            android:text="예슬(인트로)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnIntro"
+            android:onClick="onIntro" />
+
+        <Button
+            android:text="준현(일기 리스트)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDiaryList"
+            android:onClick="onDiaryList" />
+
+        <Button
+            android:text="현지(일기 보기)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDiaryView"
+            android:onClick="onDiaryView" />
+
+        <Button
+            android:text="예린(일기 수정)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDiaryEdit"
+            android:onClick="onDiaryEdit" />
+
+        <Button
+            android:text="휴원(일기 추가)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDiaryInsert"
+            android:onClick="onDiaryInsert" />
+
+        <Button
+            android:text="동현(카테고리 리스트)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCategoryList"
+            android:onClick="onCategoryList" />
+
+        <Button
+            android:text="민기(카테고리내에서 일기 리스트)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCategoryDiaryList"
+            android:onClick="onCategoryDiaryList" />
+
+        <Button
+            android:text="수필(카테고리에 포함되지 않은 리스트)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCategoryAddDiaryList"
+            android:onClick="onCategoryAddDiaryList" />
+
+        <Button
+            android:text="진택(카테고리명입력)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCategoryInsertDlg"
+            android:onClick="onCategoryInsertDlg" />
+
+        <Button
+            android:text="진택(카테고리리스트)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCategoryListDlg"
+            android:onClick="onCategoryListDlg" />
+    </LinearLayout>
 </RelativeLayout>
