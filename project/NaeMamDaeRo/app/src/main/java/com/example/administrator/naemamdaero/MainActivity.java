@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void intro(View V){
-        start(MainActivity.class);
+        start(IntroActivity.class);
     }
 
     public void dList(View V){
