@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void dView(View V){
-        start(MainActivity.class);
+        start(DiaryViewActivity.class);
     }
 
     public void dEdit(View V){
