@@ -41,7 +41,7 @@ public class testRoot extends AppCompatActivity {
             Intent nextInt = null;
             switch(V.getId()){
                 case R.id.a:
-                    nextInt = new Intent(testRoot.this, MainActivity.class);
+                    nextInt = new Intent(getApplicationContext(), DiaryEditActivity.class);
                     break;
                 case R.id.b:
                     nextInt = new Intent(testRoot.this, MainActivity.class);
