@@ -13,57 +13,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-<<<<<<< HEAD
-    public void startActivity(Class cls)
-    {
-        Intent i = new Intent(this, cls);
-        this.startActivity(i);
-    }
-
-    public void onIntro(View v)
-    {
-    }
-
-    public void onDiaryList(View v)
-    {
-    }
-
-    public void onDiaryView(View v)
-    {
-    }
-
-    public void onDiaryEdit(View v)
-    {
-    }
-
-    public void onDiaryInsert(View v)
-    {
-    }
-
-    public void onCategoryList(View v)
-    {
-    }
-
-    public void onCategoryDiaryList(View v)
-    {
-    }
-
-    public void onCategoryAddDiaryList(View v)
-    {
-    }
-
-    public void onCategoryInsertDlg(View v)
-    {
-    }
-
-    public void onCategoryListDlg(View v)
-    {
-        MyDialog dialog = new MyDialog(this);
-        dialog.show();
-    }
-
-
-=======
     public void intro(View V){
         start(MainActivity.class);
     }
@@ -77,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void dEdit(View V){
-        start(MainActivity.class);
+        start(DiaryEditActivity.class);
     }
 
     public void dInsert(View V){
@@ -109,5 +58,4 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, cls);
         startActivity(i);
     }
->>>>>>> origin/master
 }

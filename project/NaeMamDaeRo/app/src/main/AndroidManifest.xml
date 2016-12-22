@@ -15,11 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-=======
 
         <activity android:name=".DiaryEditActivity"></activity>
->>>>>>> origin/master
     </application>
 
 </manifest>
