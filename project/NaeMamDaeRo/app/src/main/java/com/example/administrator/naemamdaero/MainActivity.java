@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+<<<<<<< HEAD
     public void startActivity(Class cls)
     {
         Intent i = new Intent(this, cls);
@@ -62,4 +63,51 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+=======
+    public void intro(View V){
+        start(MainActivity.class);
+    }
+
+    public void dList(View V){
+        start(MainActivity.class);
+    }
+
+    public void dView(View V){
+        start(MainActivity.class);
+    }
+
+    public void dEdit(View V){
+        start(MainActivity.class);
+    }
+
+    public void dInsert(View V){
+        start(MainActivity.class);
+    }
+
+    public void cList(View V){
+        start(MainActivity.class);
+    }
+
+    public void cDList(View V){
+        start(MainActivity.class);
+    }
+
+    public void cAddDList(View V){
+        start(MainActivity.class);
+    }
+
+    public void PopUp1(View V){
+        start(MainActivity.class);
+    }
+
+    public void PopUp2(View V){
+        start(MainActivity.class);
+    }
+
+    private void start(Class cls)
+    {
+        Intent i = new Intent(this, cls);
+        startActivity(i);
+    }
+>>>>>>> origin/master
 }
