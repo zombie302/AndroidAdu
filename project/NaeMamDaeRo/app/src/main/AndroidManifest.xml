@@ -15,11 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
+
         <activity android:name=".IntroActivity"></activity>
-=======
+
         <activity android:name=".DiaryViewActivity"></activity>
->>>>>>> origin/master
+
         <activity android:name=".DiaryEditActivity"></activity>
     </application>
 
