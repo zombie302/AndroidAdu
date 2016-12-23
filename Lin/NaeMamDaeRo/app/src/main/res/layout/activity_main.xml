@@ -1,13 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_test_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.administrator.naemamdaero.MainActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:text=" introActivity(Na)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/introbtn"
+            android:onClick="intro" />
+
+        <Button
+            android:text="DiaryListActivity(Bae)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/DListbtn"
+            android:onClick="dList"/>
+
+        <Button
+            android:text="DiaryViewActivity(Jo)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/DViewbtn"
+            android:onClick="dView"/>
+
+        <Button
+            android:text="DiaryEditActivity(Lin)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/DEditbtn"
+            android:onClick="dEdit"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/DInsertbtn"
+            android:text="DiaryInsertActivity(Jung)"
+            android:onClick="dInsert"/>
+
+        <Button
+            android:text="CategoryListActivity(Dong)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CListbtn"
+            android:onClick="cList"/>
+
+        <Button
+            android:text="CategoryDiaryListActivity(Min)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CDListbtn"
+            android:onClick="cDList"/>
+
+        <Button
+            android:text="CategoryAddDiaryListActivity(Park)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CaddDListbtn"
+            android:onClick="cAddDList"/>
+
+        <Button
+            android:text="PopUp1(Hong)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Pop1btn"
+            android:onClick="PopUp1"/>
+
+        <Button
+            android:text="PopUp2(Hong)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Pop2btn"
+            android:onClick="PopUp2"/>
+    </LinearLayout>
 </RelativeLayout>
