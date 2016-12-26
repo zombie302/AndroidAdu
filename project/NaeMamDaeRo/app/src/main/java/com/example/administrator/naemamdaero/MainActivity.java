@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
         start(MainActivity.class);
     }
 
-    public void cList(View V){
-        start(MainActivity.class);
-    }
+    public void cList(View V){ start(CategoryListActivity.class); }
 
     public void cDList(View V){
         start(MainActivity.class);
