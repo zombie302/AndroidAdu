@@ -18,6 +18,7 @@ import java.util.ArrayList;
  */
 
 class chListViewItem{
+    private  String con;
     private String arr1;
     private String arr2;
     private long id;
@@ -26,11 +27,13 @@ class chListViewItem{
 
     public void setCheck(boolean cheak){this.check = cheak;}
 
-    public void setArr1(String string){
+    public void setarr1(String string){
         arr1 = string;
     }
 
-    public void setArr2(String string){
+    public void setCon(String con){this.con = con;}
+
+    public void setarr2(String string){
         arr2 = string;
     }
 
@@ -40,11 +43,13 @@ class chListViewItem{
 
     public boolean getCheck(){return check;}
 
-    public String getarr1(){
+    public String getArr1(){
         return arr1;
     }
 
-    public String getarr2(){
+    public String getCon() {return con; }
+
+    public String getArr2(){
         return arr2;
     }
 
@@ -65,19 +70,50 @@ class sideListViewItem{
 
 }
 
+
 class cheakAdapter extends BaseAdapter {
     public ArrayList<chListViewItem> list = new ArrayList<chListViewItem>();
 
 
     public boolean isCheckMode = false;
 
-    public void update(MyDatabase MDB){
+    public void update(MyDatabase MDB) {
         list.clear();
 
         ArrayList<MyData> array = MDB.searchAll();
 
-        for (int i=0;i<array.size();i++){
-            this.addItem(array.get(i).getId() ,array.get(i).getTitle(),array.get(i).getTime());
+        for (int i = 0; i < array.size(); i++) {
+            this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+        }
+    }
+
+    public void updateTFilter(MyDatabase MDB,String key) {
+        list.clear();
+
+        ArrayList<MyData> array = MDB.searchAll();
+        for (int i = 0; i < array.size(); i++) {
+            if(array.get(i).getTitle().contains(key) == true)
+                this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+        }
+    }
+
+    public void updateCFilter(MyDatabase MDB,String key) {
+        list.clear();
+
+        ArrayList<MyData> array = MDB.searchAll();
+        for (int i = 0; i < array.size(); i++) {
+            if(array.get(i).getContent().contains(key) == true)
+                this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+        }
+    }
+
+    public void updateTCFilter(MyDatabase MDB,String key) {
+        list.clear();
+
+        ArrayList<MyData> array = MDB.searchAll();
+        for (int i = 0; i < array.size(); i++) {
+            if(array.get(i).getContent().contains(key) == true || array.get(i).getTitle().contains(key) == true)
+                this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
         }
     }
 
@@ -118,8 +154,8 @@ class cheakAdapter extends BaseAdapter {
         chListViewItem listViewItem = list.get(position);
 
 
-        titleTextView.setText(listViewItem.getarr1());
-        dateTextView.setText(listViewItem.getarr2());
+        titleTextView.setText(listViewItem.getArr1());
+        dateTextView.setText(listViewItem.getArr2());
 
         if(listViewItem.check == true) {
             checkBox.setChecked(true);
@@ -130,12 +166,13 @@ class cheakAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void addItem(long id, String title, String date) {
+    public void addItem(long id, String title,String con, String date) {
         chListViewItem item = new chListViewItem();
 
         item.setId(id);
-        item.setArr1(title);
-        item.setArr2(date);
+        item.setarr1(title);
+
+        item.setarr2(date);
 
         list.add(item);
     }
@@ -143,7 +180,19 @@ class cheakAdapter extends BaseAdapter {
     public void CListUp(ArrayList<MyData> arr){
         list.clear();
         for (int i=0;i<arr.size();i++)
-            this.addItem(arr.get(i).getId(),arr.get(i).getTitle(),arr.get(i).getTime());
+            this.addItem(arr.get(i).getId(),arr.get(i).getTitle(),arr.get(i).getContent(),arr.get(i).getTime());
+    }
+
+    public void tFilter(MyDatabase MDB ,String key){
+        updateTFilter(MDB, key);
+    }
+
+    public void cFilter(MyDatabase MDB, String key){
+        updateCFilter(MDB, key);
+    }
+
+    public void tcFilter(MyDatabase MDB, String key){
+        updateTCFilter(MDB, key);
     }
 }
 
@@ -207,6 +256,8 @@ class sideAdapter extends BaseAdapter {
 
         return array;
     }
+
+
 
 
 }

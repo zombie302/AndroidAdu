@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.administrator.naemamdaero.database.MyData;
 import com.example.administrator.naemamdaero.database.MyDatabase;
@@ -30,6 +31,8 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
     ListView listview ;
     ListView listview2 ;
     MyDatabase MDB;
+    Spinner spinner;
+    TextView sTx;
 
 
     public boolean onOptionItemSelected(MenuItem item){
@@ -41,9 +44,18 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        adapterm.update(MDB);
+        sideAdapter1.update(MDB);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("전체");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_list);
 
@@ -85,6 +97,9 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                sideListViewItem obj = (sideListViewItem)sideAdapter1.getItem(position);
+                setTitle(obj.getarr1());
                 DLayout.closeDrawer(SLayout);
                 ArrayList<MyData> array =  sideAdapter1.CG(MDB,position);
                 adapterm.CListUp(array);
@@ -144,6 +159,27 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onSC(View v){
+        sTx = (TextView) findViewById(R.id.ST);
+        String text = sTx.getText().toString();
+        spinner = (Spinner) findViewById(R.id.SO);
+        String spInt = (String)spinner.getSelectedItem();
+        switch (spInt){
+            case "제목":
+                adapterm.tFilter(MDB,text);
+                listview.invalidateViews();
+                break;
+            case "내용":
+                adapterm.cFilter(MDB,text);
+                listview.invalidateViews();
+                break;
+            case "제목+내용":
+                adapterm.tcFilter(MDB,text);
+                listview.invalidateViews();
+                break;
+        }
     }
 
     @Override

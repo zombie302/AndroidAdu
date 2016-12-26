@@ -3,7 +3,7 @@
     <string-array name="option">NaeMamDaeRo
         <item>제목</item>
         <item>내용</item>
-        <item>제목 + 내용</item>
+        <item>제목+내용</item>
     </string-array>
 
     <string-array name="up_key">NaeMamDaeRo
