@@ -1,3 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="option">NaeMamDaeRo
+        <item>제목</item>
+        <item>내용</item>
+        <item>제목 + 내용</item>
+    </string-array>
+
+    <string-array name="up_key">NaeMamDaeRo
+        <item>aaa</item>
+        <item>bbb</item>
+        <item>ccc</item>
+    </string-array>
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".MainActivity">
+
+        <item
+            android:id="@+id/menu_login"
+            android:orderInCategory="100"
+            android:title="로그인"
+            />
+
+        <item
+            android:id="@+id/menu_logout"
+            android:orderInCategory="100"
+            android:title="로그아웃"
+            />
+
+        <item
+            android:id="@+id/menu_a"
+            android:orderInCategory="100"
+            android:title="다음"
+            />
+
+    </menu>
+
+
     <string name="app_name">NaeMamDaeRo</string>
 </resources>

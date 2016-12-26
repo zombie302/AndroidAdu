@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void dList(View V){
-        start(MainActivity.class);
+        start(DiaryListActivity.class);
     }
 
     public void dView(View V){
