@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 /**
  * Created by user on 2016-12-23.
@@ -161,9 +162,74 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
-    public void search()
+    public ArrayList<MyData> searchAll()
     {
+        ArrayList<MyData> dataList = new ArrayList<MyData>();
 
+        String SQL = "select * from "+ TB_DIARY ;
+
+        Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
+        int count = cursor.getCount();
+
+        Log.i("searchAll","ALL ======================");
+        for(int i = 0; i < count; i ++)
+        {
+            cursor.moveToNext();
+
+            long id = cursor.getLong(0);
+            String title = cursor.getString(1);
+            long time = cursor.getLong(2);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분 ss초");
+            String timeByStringType = dateFormat.format(time);
+            String content = cursor.getString(3);
+            String category = cursor.getString(4);
+            MyData myData = new MyData(id, title, timeByStringType, content, category);
+            dataList.add(myData);
+        }
+
+        cursor.close();
+
+        return dataList;
+    }
+
+    public ArrayList<MyData> searchByCategory(String categoryName)
+    {
+        ArrayList<MyData> dataList = new ArrayList<MyData>();
+
+        String SQL = "select * from "+ TB_DIARY  + " where category='"+categoryName+"';";
+
+        Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
+        int count = cursor.getCount();
+
+        Log.i("searchAll","ALL ======================");
+        for(int i = 0; i < count; i ++)
+        {
+            cursor.moveToNext();
+
+            long id = cursor.getLong(0);
+            String title = cursor.getString(1);
+            long time = cursor.getLong(2);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분 ss초");
+            String timeByStringType = dateFormat.format(time);
+            String content = cursor.getString(3);
+            String category = cursor.getString(4);
+            MyData myData = new MyData(id, title, timeByStringType, content, category);
+            dataList.add(myData);
+        }
+
+        cursor.close();
+
+        return dataList;
+    }
+
+    public ArrayList<String> getCategory()
+    {
+        ArrayList<String> categoryList = new ArrayList<String>();
+
+        categoryList.add("aaa");
+        categoryList.add("bbb");
+        categoryList.add("ccc");
+        return categoryList;
     }
 
 }

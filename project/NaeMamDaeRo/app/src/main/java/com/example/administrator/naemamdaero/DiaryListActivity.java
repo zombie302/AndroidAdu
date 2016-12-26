@@ -16,6 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.example.administrator.naemamdaero.database.MyData;
+import com.example.administrator.naemamdaero.database.MyDatabase;
+
+import java.util.ArrayList;
+
 public class DiaryListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     cheakAdapter adapterm;
     sideAdapter sideAdapter1;
@@ -24,6 +29,7 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
     LinearLayout SLayout;
     ListView listview ;
     ListView listview2 ;
+    MyDatabase MDB;
 
 
     public boolean onOptionItemSelected(MenuItem item){
@@ -41,6 +47,9 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_list);
 
+        MDB = MyDatabase.getInstance(this);
+        MDB.open();
+
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.arrow_down_float);
 
@@ -51,20 +60,12 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         this.DLayout = DrawerLayout;
         this.SLayout = layout;
 
-
-
         // Adapter 생성
         adapterm = new cheakAdapter() ;
         sideAdapter1 = new sideAdapter() ;
 
-
-        adapterm.addItem("제목","2016-12-21");
-        adapterm.addItem("asdfaaaaaaaaaaaaa","fdsa");
-        adapterm.addItem("asdfaaaaaaaa9llllllllaaaaa","fdsa");
-
-        sideAdapter1.addItem("asdf1");
-        sideAdapter1.addItem("asdf2");
-        sideAdapter1.addItem("asdf3");
+        adapterm.update(MDB);
+        sideAdapter1.update(MDB);
 
         listview = (ListView) findViewById(R.id.list_main);
         listview.setAdapter(adapterm);
@@ -84,6 +85,9 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DLayout.closeDrawer(SLayout);
+                ArrayList<MyData> array =  sideAdapter1.CG(MDB,position);
+                adapterm.CListUp(array);
                 return;
             }
         });
