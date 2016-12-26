@@ -44,11 +44,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void PopUp1(View V){
-        start(MainActivity.class);
+        CategoryLists cl = new CategoryLists(MainActivity.this, new CategoryName.OnCloseListener() {
+            @Override
+            public void onClose(String a) {
+
+            }
+        },  "카테고리 선택");
+        cl.show();
     }
 
     public void PopUp2(View V){
-        start(MainActivity.class);
+        CategoryName cn = new CategoryName(MainActivity.this, new CategoryName.OnCloseListener() {
+            @Override
+            public void onClose(String a) {
+
+            }
+        });
+        cn.show();
     }
 
     private void start(Class cls)
