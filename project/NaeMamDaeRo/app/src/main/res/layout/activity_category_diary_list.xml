@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_category_diary_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.naemamdaero.CategoryDiaryListActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <Spinner
+                android:layout_width="116dp"
+                android:layout_height="41dp"
+                android:id="@+id/searchSpinner"/>
+
+            <EditText
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Plz enter the contents"
+                android:ems="10"
+                android:id="@+id/searchEditText"
+                android:layout_above="@+id/listview"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1.06" />
+
+            <Button
+                android:text="검색"
+                android:layout_width="101dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:onClick="onSearchClicked" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.administrator.naemamdaero;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -61,18 +62,13 @@ public class CategoryListActivity extends AppCompatActivity {
             adapter.addData(list.get(i));
         listView.setAdapter(adapter);
 
-        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//               Intent i = new Intent(CategoryListActivity.this, CategoryDiary..);
-//                Adapter.Item item = (Adapter.Item)adapter.getItem(position);
-//                i.putExtras("category", item.cName);
-//                startActivity(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(CategoryListActivity.this, CategoryDiaryListActivity.class);
+                Adapter.Item item = (Adapter.Item)adapter.getItem(position);
+                i.putExtra("category", item.cName);
+                startActivity(i);
             }
         });
     }

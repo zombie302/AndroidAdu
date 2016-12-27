@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/diaryAdd"
+        android:orderInCategory="100"
+        android:title="일기 추가"
+        app:showAsAction="never"
+
+        />
+    <item
+        android:title="일기 삭제"
+        android:orderInCategory="101"
+        android:id="@+id/diaryRemove" />
+    <item
+        android:title="카테고리명 수정"
+        android:orderInCategory="102"
+        android:id="@+id/diaryMod" />
+</menu>

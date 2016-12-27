@@ -15,10 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".CategoryDiaryListActivity"></activity>
         <activity android:name=".IntroActivity"></activity>
         <activity android:name=".DiaryListActivity"></activity>
         <activity android:name=".DiaryViewActivity"></activity>
+        <activity android:name=".CategoryDiaryListActivity"></activity>
         <activity android:name=".CategoryListActivity"/>
         <activity android:name=".DiaryInsertActivity"></activity>
         <activity android:name=".DiaryEditActivity"></activity>
