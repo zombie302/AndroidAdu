@@ -86,6 +86,23 @@ public class MyDbAdapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
+    public void loadDiaryDataWithout(String CategoryName)
+    {
+        type = DIARY_TYPE;
+
+        if(CategoryName == null || CategoryName.equals(""))
+        {
+            itemDataList = myDatabase.searchAll();
+        }
+        else {
+            itemDataList = myDatabase.searchWithoutCategory(CategoryName);
+        }
+
+        checkedList = new boolean[itemDataList.size()];
+
+        this.notifyDataSetChanged();
+    }
+
     public void loadCategoryData()
     {
         type = CATEGORY_TYPE;

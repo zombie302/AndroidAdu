@@ -232,6 +232,36 @@ public class MyDatabase extends SQLiteOpenHelper {
         return dataList;
     }
 
+    public ArrayList<MyData> searchWithoutCategory(String categoryName)
+    {
+        ArrayList<MyData> dataList = new ArrayList<MyData>();
+
+        String SQL = "select * from "+ TB_DIARY  + " where category!='"+categoryName+"';";
+
+        Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
+        int count = cursor.getCount();
+
+        Log.i("searchWithoutCategory","ALL ======================");
+        for(int i = 0; i < count; i ++)
+        {
+            cursor.moveToNext();
+
+            long id = cursor.getLong(0);
+            String title = cursor.getString(1);
+            long time = cursor.getLong(2);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분 ss초");
+            String timeByStringType = dateFormat.format(time);
+            String content = cursor.getString(3);
+            String category = cursor.getString(4);
+            MyData myData = new MyData(id, title, timeByStringType, content, category);
+            dataList.add(myData);
+        }
+
+        cursor.close();
+
+        return dataList;
+    }
+
     public ArrayList<MyData> searchByCategory(String categoryName)
     {
         ArrayList<MyData> dataList = new ArrayList<MyData>();
@@ -241,7 +271,7 @@ public class MyDatabase extends SQLiteOpenHelper {
         Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
         int count = cursor.getCount();
 
-        Log.i("searchAll","ALL ======================");
+        Log.i("searchByCategory","ALL ======================");
         for(int i = 0; i < count; i ++)
         {
             cursor.moveToNext();
