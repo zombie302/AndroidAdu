@@ -18,7 +18,8 @@ public class MyDatabase extends SQLiteOpenHelper {
     private static MyDatabase self = null;
     private final static String DATABASE_NAME = "DB_DIARY";
     private final static String TB_DIARY = "TB_DIARY";
-    private final static int DATABASE_VER = 4;
+    private final static String TB_CATEGORY = "TB_CATEGORY";
+    private final static int DATABASE_VER = 5;
 
     private SQLiteDatabase sqLiteDatabase = null;
 
@@ -87,6 +88,39 @@ public class MyDatabase extends SQLiteOpenHelper {
             e.printStackTrace();
             return;
         }
+
+        try
+        {
+            String DROP_SQL = "drop table if exists "+ TB_CATEGORY;
+            db.execSQL(DROP_SQL);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            self = null;
+            return;
+        }
+
+        CREATE_SQL = "create table " + TB_CATEGORY + "("
+                + "_id integer PRIMARY KEY autoincrement,"
+                + "name text);";
+
+        try
+        {
+            db.execSQL(CREATE_SQL);
+        }
+        catch(Exception e)
+        {
+            self = null;
+            e.printStackTrace();
+            return;
+        }
+
+        String SQL = "insert into "+ TB_CATEGORY + " (name) values ('공부');";
+        db.execSQL(SQL);
+
+        SQL = "insert into "+ TB_CATEGORY + " (name) values ('기타');";
+        db.execSQL(SQL);
     }
 
     public boolean open()
@@ -132,6 +166,12 @@ public class MyDatabase extends SQLiteOpenHelper {
     public void update(long id, String title, String content, String category)
     {
         String SQL = "update "+ TB_DIARY + " set title='"+ title +"',content='"+content+"',category='"+category+"' where _id="+id;
+        sqLiteDatabase.execSQL(SQL);
+    }
+
+    public void delete(long id)
+    {
+        String SQL = "delete from"+ TB_DIARY +  " where _id="+id;
         sqLiteDatabase.execSQL(SQL);
     }
 
@@ -226,10 +266,61 @@ public class MyDatabase extends SQLiteOpenHelper {
     {
         ArrayList<String> categoryList = new ArrayList<String>();
 
-        categoryList.add("aaa");
-        categoryList.add("bbb");
-        categoryList.add("ccc");
+        String SQL = "select * from "+ TB_CATEGORY +";";
+
+        Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
+
+        int count = cursor.getCount();
+
+        Log.i("getCategory","ALL ======================");
+        for(int i = 0; i < count; i ++)
+        {
+            cursor.moveToNext();
+            String name = cursor.getString(1);
+            categoryList.add(name);
+        }
+
+        cursor.close();
+
         return categoryList;
     }
+
+    public boolean addCategory(String name)
+    {
+        String SQL = "insert into "+ TB_CATEGORY + " (name) values ('" + name + "');";
+        sqLiteDatabase.execSQL(SQL);
+
+        return true;
+    }
+
+    public boolean updateCategory(String oldName, String newName)
+    {
+        String SQL = "update "+ TB_CATEGORY + " set name='"+ newName +"' where name='"+oldName+"'";
+        sqLiteDatabase.execSQL(SQL);
+
+        ArrayList<MyData> diaryList = searchByCategory(oldName);
+
+        for(MyData data : diaryList)
+        {
+            update(data.getId(),data.getTitle(),data.getContent(),newName);
+        }
+
+        return true;
+    }
+
+    public boolean deleteCategory(String name)
+    {
+        String SQL = "delete from"+ TB_CATEGORY + " where name='"+name+"'";
+        sqLiteDatabase.execSQL(SQL);
+
+        ArrayList<MyData> diaryList = searchByCategory(name);
+
+        for(MyData data : diaryList)
+        {
+            update(data.getId(),data.getTitle(),data.getContent(),"");
+        }
+        return true;
+    }
+
 
 }
