@@ -17,24 +17,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".MainActivity">
 
-        <item
-            android:id="@+id/menu_login"
-            android:orderInCategory="100"
-            android:title="로그인"
-            />
-
-        <item
-            android:id="@+id/menu_logout"
-            android:orderInCategory="100"
-            android:title="로그아웃"
-            />
-
-        <item
-            android:id="@+id/menu_a"
-            android:orderInCategory="100"
-            android:title="다음"
-            />
-
     </menu>
 
 

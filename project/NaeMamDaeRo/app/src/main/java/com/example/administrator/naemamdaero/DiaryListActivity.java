@@ -33,6 +33,8 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
     MyDatabase MDB;
     Spinner spinner;
     TextView sTx;
+    MenuInflater menuInflater;
+    Menu menu;
 
 
     public boolean onOptionItemSelected(MenuItem item){
@@ -62,9 +64,9 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         MDB = MyDatabase.getInstance(this);
         MDB.open();
 
+
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.arrow_down_float);
-
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.side_Layout);
         DrawerLayout DrawerLayout = (DrawerLayout) findViewById(R.id.Drawer_Layout);
@@ -103,6 +105,7 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                 DLayout.closeDrawer(SLayout);
                 ArrayList<MyData> array =  sideAdapter1.CG(MDB,position);
                 adapterm.CListUp(array);
+                adapterm.notifyDataSetChanged();
                 return;
             }
         });
@@ -115,7 +118,8 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
+        this.menu = menu;
+        menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.option_mainlist, menu);
         return true;
     }
@@ -149,13 +153,29 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                 startActivity(i);
                 break;
             case R.id.menu_d:
+                menu.clear();
                 adapterm.isCheckMode = true;
+                menuInflater.inflate(R.menu.rm_option, menu);
                 listview.invalidateViews();
                 break;
             case R.id.menu_s:
                 Intent j = new Intent(this,CategoryListActivity.class);
                 startActivity(j);
                 break;
+            case R.id.menu_ok:
+                menu.clear();
+                adapterm.delCheckData(MDB);
+                menuInflater.inflate(R.menu.option_mainlist, menu);
+                adapterm.isCheckMode = false;
+                listview.invalidateViews();
+                break;
+            case R.id.menu_cancle:
+                menu.clear();
+                menuInflater.inflate(R.menu.option_mainlist, menu);
+                adapterm.isCheckMode = false;
+                listview.invalidateViews();
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -180,6 +200,13 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                 listview.invalidateViews();
                 break;
         }
+    }
+
+    public void onSideAllText(View v){
+        adapterm.update(MDB);
+        DLayout.closeDrawer(SLayout);
+        this.setTitle("전체");
+        listview.invalidateViews();
     }
 
     @Override

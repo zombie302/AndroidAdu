@@ -26,10 +26,7 @@ public class DiaryViewActivity extends AppCompatActivity {
         TextView f = (TextView)findViewById(R.id.button2);
 
         MyDatabase m = MyDatabase.getInstance(this);
-
         m.open();
-
-        m.insert("a","b","c");
 
         MyData e = m.read(1);
 

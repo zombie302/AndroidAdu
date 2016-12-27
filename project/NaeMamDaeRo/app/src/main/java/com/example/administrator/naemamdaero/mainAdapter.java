@@ -24,8 +24,7 @@ class chListViewItem{
     private long id;
     boolean check;
 
-
-    public void setCheck(boolean cheak){this.check = cheak;}
+    public void setCheck(boolean check) {this.check = check; }
 
     public void setarr1(String string){
         arr1 = string;
@@ -39,6 +38,10 @@ class chListViewItem{
 
     public void setId(long string){
         id = string;
+    }
+
+    public long getId(){
+        return id;
     }
 
     public boolean getCheck(){return check;}
@@ -57,8 +60,6 @@ class chListViewItem{
 
 class sideListViewItem{
     private String arr1;
-    private long id;
-
 
     public void setArr1(String string){
         arr1 = string;
@@ -85,6 +86,19 @@ class cheakAdapter extends BaseAdapter {
         for (int i = 0; i < array.size(); i++) {
             this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
         }
+    }
+
+    public void delCheckData(MyDatabase MDB){
+        for(int i=list.size()-1; i>=0 ; i--){
+            if(list.get(i).getCheck() == true)
+                delData(MDB, i);
+        }
+        this.update(MDB);
+    }
+
+    public void delData(MyDatabase MDB ,int position){
+        long id = list.get(position).getId();
+        MDB.delete(id);
     }
 
     public void updateTFilter(MyDatabase MDB,String key) {
@@ -153,16 +167,18 @@ class cheakAdapter extends BaseAdapter {
             checkBox.setVisibility(View.GONE);
         chListViewItem listViewItem = list.get(position);
 
-
+        checkBox.setTag(position);
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckBox cb = (CheckBox)v;
+                int position = (int)cb.getTag();
+                list.get(position).setCheck(cb.isChecked());
+            }
+        });
         titleTextView.setText(listViewItem.getArr1());
         dateTextView.setText(listViewItem.getArr2());
 
-        if(listViewItem.check == true) {
-            checkBox.setChecked(true);
-        }
-        else {
-            checkBox.setChecked(false);
-        }
         return convertView;
     }
 
@@ -171,7 +187,7 @@ class cheakAdapter extends BaseAdapter {
 
         item.setId(id);
         item.setarr1(title);
-
+        item.setCon(con);
         item.setarr2(date);
 
         list.add(item);
@@ -182,6 +198,9 @@ class cheakAdapter extends BaseAdapter {
         for (int i=0;i<arr.size();i++)
             this.addItem(arr.get(i).getId(),arr.get(i).getTitle(),arr.get(i).getContent(),arr.get(i).getTime());
     }
+
+
+
 
     public void tFilter(MyDatabase MDB ,String key){
         updateTFilter(MDB, key);

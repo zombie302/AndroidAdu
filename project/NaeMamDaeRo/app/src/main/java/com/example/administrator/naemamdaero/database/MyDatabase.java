@@ -171,7 +171,7 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     public void delete(long id)
     {
-        String SQL = "delete from"+ TB_DIARY +  " where _id="+id;
+        String SQL = "delete from "+ TB_DIARY +  " where _id="+id;
         sqLiteDatabase.execSQL(SQL);
     }
 

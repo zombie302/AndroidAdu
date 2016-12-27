@@ -27,7 +27,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <LinearLayout
+            <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,14 +48,16 @@
                 android:id="@+id/ST"
                 android:gravity="center_vertical|center"
                 android:hint="검색어"
-                android:layout_weight="0.23" />
+                android:layout_weight="0.20" />
 
             <Button
                 android:text="검색"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/SB"
-                android:onClick="onSC" />
+                android:onClick="onSC"
+                android:textSize="14sp" />
+
         </LinearLayout>
 
         <ListView
@@ -65,15 +67,26 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/list_main" />
-    </LinearLayout>
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="start"
             android:background="@android:color/background_light"
-            android:id="@+id/side_Layout">
+            android:id="@+id/side_Layout"
+            android:weightSum="1">
 
+
+            <TextView
+                android:text="전체보기"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textSize="24sp"
+                android:onClick="onSideAllText" />
 
             <ListView
                 android:layout_width="match_parent"
@@ -82,4 +95,5 @@
         </LinearLayout>
 
     </android.support.v4.widget.DrawerLayout>
+
 </RelativeLayout>
