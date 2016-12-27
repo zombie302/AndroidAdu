@@ -29,9 +29,8 @@ public class MainActivity extends AppCompatActivity {
         start(DiaryEditActivity.class);
     }
 
-    public void dInsert(View V){
-        start(MainActivity.class);
-    }
+    public void dInsert(View V) { start(DiaryInsertActivity.class); }
+    
 
     public void cList(View V){ start(CategoryListActivity.class); }
 
