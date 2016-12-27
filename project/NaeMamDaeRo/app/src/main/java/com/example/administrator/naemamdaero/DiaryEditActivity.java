@@ -3,6 +3,7 @@ package com.example.administrator.naemamdaero;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.example.administrator.naemamdaero.database.MyData;
 import com.example.administrator.naemamdaero.database.MyDatabase;
 
 public class DiaryEditActivity extends AppCompatActivity {
+     long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +26,11 @@ public class DiaryEditActivity extends AppCompatActivity {
 
         MyDatabase myDatabase = MyDatabase.getInstance(this);
         myDatabase.open();
-        myDatabase.insert("제목","내용","이름");
 
         Intent intent = this.getIntent();
-        Long id = intent.getLongExtra("id",-1);
+        id = getIntent().getLongExtra( "id", -1);
+
+        Log.i("DiaryViewActivity","id = "+id);
         MyData m = myDatabase.read(id);
 
         EditText a = (EditText)this.findViewById(R.id.editText4);
@@ -62,9 +65,10 @@ public class DiaryEditActivity extends AppCompatActivity {
                 String e = b.getText().toString();
                 String f = c.getText().toString();
 
-                myDatabase.update(1,d,e,f);
+                myDatabase.update(id,d,e,f);
                 myDatabase.printRecord();
 
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -6,6 +6,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -91,6 +92,9 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent ad = new Intent(DiaryListActivity.this,DiaryViewActivity.class);
+                ad.putExtra("id",adapterm.list.get(position).getId());
+
+                Log.i("DiaryListActivity","id = "+adapterm.list.get(position).getId());
                 startActivity(ad);
                 return;
             }
@@ -149,8 +153,9 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                     DLayout.openDrawer(SLayout);
                 break;
             case R.id.menu_w:
-                Intent i = new Intent(this,DiaryEditActivity.class);
+                Intent i = new Intent(this,DiaryInsertActivity.class);
                 startActivity(i);
+                adapterm.update(MDB);
                 break;
             case R.id.menu_d:
                 menu.clear();
