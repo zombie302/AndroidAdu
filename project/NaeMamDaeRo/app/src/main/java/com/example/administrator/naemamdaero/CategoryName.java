@@ -27,6 +27,7 @@ public class CategoryName extends Dialog{
         @Override
         public void onClick(View v) {
             CategoryName.this.dismiss();
+            CategoryName.this.closeListener.onClose(e.getText().toString());
         }
     };
 
@@ -46,7 +47,6 @@ public class CategoryName extends Dialog{
         }
 
         b = (Button) findViewById(R.id.okButton);
-        a = e.getText().toString();
         b.setOnClickListener(click);
     }
 
@@ -57,8 +57,6 @@ public class CategoryName extends Dialog{
         this.setOnDismissListener(new OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-
-                CategoryName.this.closeListener.onClose(a);
                 InputMethodManager imm;
                 imm = (InputMethodManager)con.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(e.getWindowToken(), 0);
@@ -74,7 +72,6 @@ public class CategoryName extends Dialog{
         this.setOnDismissListener(new OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                CategoryName.this.closeListener.onClose(a);
                 InputMethodManager imm;
                 imm = (InputMethodManager)con.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(e.getWindowToken(), 0);
