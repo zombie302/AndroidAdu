@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_w"
+        android:title="일기작성" />
+    <item
+        android:id="@+id/menu_d"
+        android:title="일기삭제"/>
+    <item
+        android:id="@+id/menu_s"
+        android:title="카테고리관리"/>
+
+</menu>

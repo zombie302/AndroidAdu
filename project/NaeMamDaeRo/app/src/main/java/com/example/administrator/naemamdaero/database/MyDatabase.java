@@ -340,7 +340,7 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     public boolean deleteCategory(String name)
     {
-        String SQL = "delete from"+ TB_CATEGORY + " where name='"+name+"'";
+        String SQL = "delete from "+ TB_CATEGORY + " where name='"+name+"'";
         sqLiteDatabase.execSQL(SQL);
 
         ArrayList<MyData> diaryList = searchByCategory(name);
