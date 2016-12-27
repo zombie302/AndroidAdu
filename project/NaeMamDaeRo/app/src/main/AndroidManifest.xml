@@ -22,7 +22,7 @@
         <activity android:name=".CategoryListActivity"/>
         <activity android:name=".DiaryInsertActivity"></activity>
         <activity android:name=".DiaryEditActivity"></activity>
-	
+        <activity android:name=".CategoryAddDiaryListActivity"></activity>
     </application>
 
 </manifest>
