@@ -1,5 +1,6 @@
 package com.example.administrator.naemamdaero;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,8 +25,13 @@ public class IntroActivity extends AppCompatActivity {
 
             a.what = percent+10;
 
-            if(a.what == 100)
+            if(percent == 100)
+            {
+                Intent intent = new Intent(IntroActivity.this, DiaryListActivity.class);
+                startActivity(intent);
+                finish();
                 return;
+            }
 
             handler.sendMessageDelayed(a,1000);
 

@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
         android:max="100"
-        android:progress="50"
+        android:progress="0"
         android:layout_marginBottom="17dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
