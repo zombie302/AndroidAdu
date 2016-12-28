@@ -39,11 +39,11 @@
             android:gravity="top" />
 
         <Button
-            android:text="카테고리 선택버튼"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button"
-            android:onClick="onbutton1" />
+            android:onClick="onbutton1"
+            android:hint="카테고리선택" />
 
     </LinearLayout>
 </RelativeLayout>
