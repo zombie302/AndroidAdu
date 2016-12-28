@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.administrator.naemamdaero.database.MyData;
 import com.example.administrator.naemamdaero.database.MyDatabase;
@@ -38,7 +37,9 @@ public class DiaryEditActivity extends AppCompatActivity {
         Button c = (Button)this.findViewById(R.id.button3);
         a.setText(m.getTitle());
         b.setText(m.getContent());
-        c.setText(m.getCategory());
+
+        if(m.getCategory().equals("") == false)
+            c.setText(m.getCategory());
 
 
     }
@@ -76,7 +77,15 @@ public class DiaryEditActivity extends AppCompatActivity {
     }
 
     public void onbutton1(View v){
-        Toast.makeText(getApplicationContext(),"카테고리 선택 버튼이 눌렸어요.", Toast.LENGTH_LONG).show();
+        CategoryLists categoryListsDlg = new CategoryLists(this, new CategoryName.OnCloseListener() {
+            @Override
+            public void onClose(String a) {
+                Button c = (Button)DiaryEditActivity.this.findViewById(R.id.button3);
+                c.setText(a);
+            }
+        }, "카테고리 선택");
+
+        categoryListsDlg.show();
     }
 
 }
