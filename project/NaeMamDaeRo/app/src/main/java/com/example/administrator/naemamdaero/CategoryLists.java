@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.administrator.naemamdaero.database.MyDatabase;
+
 import java.util.ArrayList;
 
 /**
@@ -44,8 +46,16 @@ public class CategoryLists extends Dialog{
         setContentView(R.layout.category_lists);
         tv = (TextView)findViewById(R.id.textView);
         tv.setText(title);
-        adapterList.add("listitem");
-        adapterList.add("listitem2");
+
+        MyDatabase myDatabase = MyDatabase.getInstance(con);
+        myDatabase.open();
+
+        ArrayList<String> categoryList = myDatabase.getCategory();
+
+        for(String category : categoryList)
+        {
+            adapterList.add(category);
+        }
         ls = (ListView)findViewById(R.id.list);
         ls.setAdapter(new customBaseAdapter(con, adapterList));
 
