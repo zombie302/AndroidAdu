@@ -146,7 +146,7 @@ public class CategoryDiaryListActivity extends AppCompatActivity {
     private void ChangeCategory(){
         final MyDatabase db = MyDatabase.getInstance(this);
         ArrayList<MyData> dbList = db.searchByCategory(cName);
-        category = dbList.get(0).getCategory();
+        category = cName;
         CategoryName categoryName = new CategoryName(CategoryDiaryListActivity.this, new CategoryName.OnCloseListener() {
             @Override
             public void onClose(String a) {
