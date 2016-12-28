@@ -56,6 +56,14 @@ public class DiaryInsertActivity extends AppCompatActivity {
     }
 
     public void onbutton1(View v){
-        Toast.makeText(getApplicationContext(),"카테고리 버튼이 눌러졌습니다.", Toast.LENGTH_LONG).show();
+        CategoryLists categoryListsDlg = new CategoryLists(this, new CategoryName.OnCloseListener() {
+            @Override
+            public void onClose(String a) {
+                Button c = (Button)DiaryInsertActivity.this.findViewById(R.id.button);
+                c.setText(a);
+            }
+        }, "카테고리 선택");
+
+        categoryListsDlg.show();
     }
 }
