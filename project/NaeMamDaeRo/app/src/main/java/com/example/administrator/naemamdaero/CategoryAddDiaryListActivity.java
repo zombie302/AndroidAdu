@@ -66,8 +66,9 @@ public class CategoryAddDiaryListActivity extends AppCompatActivity {
 
                 myDatabase.update(myData.getId(), myData.getTitle(), myData.getContent(), category);
             }
+            finish();
 
-            myDbAdapter.loadDiaryDataWithout(category);
+            //myDbAdapter.loadDiaryDataWithout(category);
         }
 
         return super.onOptionsItemSelected(item);
