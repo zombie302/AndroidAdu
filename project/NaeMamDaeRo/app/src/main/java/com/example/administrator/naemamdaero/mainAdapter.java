@@ -101,33 +101,48 @@ class cheakAdapter extends BaseAdapter {
         MDB.delete(id);
     }
 
-    public void updateTFilter(MyDatabase MDB,String key) {
+    public void updateTFilter(String cg, MyDatabase MDB,String key) {
         list.clear();
 
-        ArrayList<MyData> array = MDB.searchAll();
-        for (int i = 0; i < array.size(); i++) {
-            if(array.get(i).getTitle().contains(key) == true)
-                this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+        if(cg == "전체"){
+            ArrayList<MyData> array = MDB.searchAll();
+            for (int i = 0; i < array.size(); i++) {
+                if (array.get(i).getTitle().contains(key) == true)
+                    this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+            }
+        }
+
+        else{
+            ArrayList<MyData> array = MDB.searchByCategory(cg);
+            for (int i = 0; i < array.size(); i++) {
+                if (array.get(i).getTitle().contains(key) == true)
+                    this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+            }
         }
     }
 
-    public void updateCFilter(MyDatabase MDB,String key) {
+    public void updateCFilter(String cg, MyDatabase MDB,String key) {
         list.clear();
 
+        if(cg == ""){
         ArrayList<MyData> array = MDB.searchAll();
-        for (int i = 0; i < array.size(); i++) {
-            if(array.get(i).getContent().contains(key) == true)
-                this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+            for (int i = 0; i < array.size(); i++) {
+                if (array.get(i).getContent().contains(key) == true)
+                    this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+            }
         }
     }
 
-    public void updateTCFilter(MyDatabase MDB,String key) {
+    public void updateTCFilter(String cg, MyDatabase MDB,String key) {
         list.clear();
 
-        ArrayList<MyData> array = MDB.searchAll();
-        for (int i = 0; i < array.size(); i++) {
-            if(array.get(i).getContent().contains(key) == true || array.get(i).getTitle().contains(key) == true)
-                this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+
+        if(cg == "") {
+            ArrayList<MyData> array = MDB.searchAll();
+            for (int i = 0; i < array.size(); i++) {
+                if (array.get(i).getContent().contains(key) == true || array.get(i).getTitle().contains(key) == true)
+                    this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+            }
         }
     }
 
@@ -202,16 +217,14 @@ class cheakAdapter extends BaseAdapter {
 
 
 
-    public void tFilter(MyDatabase MDB ,String key){
-        updateTFilter(MDB, key);
+    public void tFilter(String cg, MyDatabase MDB ,String key){updateTFilter(cg, MDB, key);}
+
+    public void cFilter(String cg, MyDatabase MDB, String key){
+        updateCFilter(cg, MDB, key);
     }
 
-    public void cFilter(MyDatabase MDB, String key){
-        updateCFilter(MDB, key);
-    }
-
-    public void tcFilter(MyDatabase MDB, String key){
-        updateTCFilter(MDB, key);
+    public void tcFilter(String cg, MyDatabase MDB, String key){
+        updateTCFilter(cg, MDB, key);
     }
 }
 

@@ -37,6 +37,7 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
     MenuInflater menuInflater;
     Menu menu;
     Intent i;
+    ArrayList<MyData> array;
 
 
     public boolean onOptionItemSelected(MenuItem item){
@@ -109,7 +110,7 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                 sideListViewItem obj = (sideListViewItem)sideAdapter1.getItem(position);
                 setTitle(obj.getarr1());
                 DLayout.closeDrawer(SLayout);
-                ArrayList<MyData> array =  sideAdapter1.CG(MDB,position);
+                array =  sideAdapter1.CG(MDB,position);
                 adapterm.CListUp(array);
                 adapterm.notifyDataSetChanged();
                 return;
@@ -195,17 +196,18 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         String text = sTx.getText().toString();
         spinner = (Spinner) findViewById(R.id.SO);
         String spInt = (String)spinner.getSelectedItem();
+        Log.i("onSC",this.getTitle().toString());
         switch (spInt){
             case "제목":
-                adapterm.tFilter(MDB,text);
+                adapterm.tFilter(this.getTitle().toString(),MDB,text);
                 listview.invalidateViews();
                 break;
             case "내용":
-                adapterm.cFilter(MDB,text);
+                adapterm.cFilter(this.getTitle().toString(),MDB,text);
                 listview.invalidateViews();
                 break;
             case "제목+내용":
-                adapterm.tcFilter(MDB,text);
+                adapterm.tcFilter(this.getTitle().toString(),MDB,text);
                 listview.invalidateViews();
                 break;
         }
