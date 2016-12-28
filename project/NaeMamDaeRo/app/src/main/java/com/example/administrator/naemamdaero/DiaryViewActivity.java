@@ -104,7 +104,7 @@ public class DiaryViewActivity extends AppCompatActivity {
     }
 
     public void onClickButton(View v){
-        Toast.makeText(getApplicationContext(),"카테고리 버튼이 눌렸어요.", Toast.LENGTH_LONG).show();
+
     }
 
 }
