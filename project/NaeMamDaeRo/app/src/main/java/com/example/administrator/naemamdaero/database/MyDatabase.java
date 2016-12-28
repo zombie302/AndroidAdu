@@ -206,7 +206,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     {
         ArrayList<MyData> dataList = new ArrayList<MyData>();
 
-        String SQL = "select * from "+ TB_DIARY ;
+        String SQL = "select * from "+ TB_DIARY +" order by _id desc;";
 
         Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
         int count = cursor.getCount();
@@ -236,7 +236,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     {
         ArrayList<MyData> dataList = new ArrayList<MyData>();
 
-        String SQL = "select * from "+ TB_DIARY  + " where category!='"+categoryName+"';";
+        String SQL = "select * from "+ TB_DIARY  + " where category!='"+categoryName+"' order by _id desc;";
 
         Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
         int count = cursor.getCount();
@@ -266,7 +266,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     {
         ArrayList<MyData> dataList = new ArrayList<MyData>();
 
-        String SQL = "select * from "+ TB_DIARY  + " where category='"+categoryName+"';";
+        String SQL = "select * from "+ TB_DIARY  + " where category='"+categoryName+"' order by _id desc;";
 
         Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
         int count = cursor.getCount();
