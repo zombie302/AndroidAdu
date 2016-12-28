@@ -53,8 +53,9 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         super.onResume();
 
         adapterm.update(MDB);
+        adapterm.notifyDataSetChanged();
         sideAdapter1.update(MDB);
-
+        sideAdapter1.notifyDataSetChanged();
     }
 
     @Override
