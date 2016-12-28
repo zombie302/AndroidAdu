@@ -151,10 +151,15 @@ public class CategoryDiaryListActivity extends AppCompatActivity {
             @Override
             public void onClose(String a) {
                 db.updateCategory(category, a);
+                setTitle(a);
+                cName = a;
+                ArrayList<MyData> arrayList = db.searchByCategory(cName);
+                m_Adapter.setData(arrayList);
+                m_Adapter.notifyDataSetChanged();
             }
         }, category);
         categoryName.show();
-        m_Adapter.notifyDataSetChanged();
+
 
     }
 }
