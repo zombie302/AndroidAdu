@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.administrator.naemamdaero.database.MyDatabase;
 
@@ -113,8 +114,14 @@ public class CategoryListActivity extends AppCompatActivity {
                     @Override
                     public void onClose(String a) {
                         CategoryListActivity.this.add = a;
-                        myDB.addCategory(add);
-                        adapter.addData(add);
+
+                        if(myDB.addCategory(add)==true) {
+                            adapter.addData(add);
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"Category Overlap.", Toast.LENGTH_LONG).show();
+                        }
+
                         listView.setAdapter(adapter);
                     }
                 });
