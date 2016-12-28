@@ -34,7 +34,7 @@ public class DiaryInsertActivity extends AppCompatActivity {
             case R.id.btnCreat:
                 // 항목이 선택되었음
 
-                Toast.makeText(getApplicationContext(),"저장 되었습니다.", Toast.LENGTH_LONG).show();
+
                 MyDatabase myDatabase = MyDatabase.getInstance(this);
                 myDatabase.open();
 
@@ -45,9 +45,16 @@ public class DiaryInsertActivity extends AppCompatActivity {
                 String e = b.getText().toString();
                 String f = c.getText().toString();
 
-                myDatabase.insert(d,e,f);
-                myDatabase.printRecord();
-                finish();
+                if(d.isEmpty() != true && e.isEmpty() != true)
+                {
+                    myDatabase.insert(d, e, f); // DB에 추가
+                    finish(); //나간다
+                    Toast.makeText(getApplicationContext(),"저장 되었습니다.", Toast.LENGTH_LONG).show();
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"내용을 입력하세요.", Toast.LENGTH_LONG).show();
+
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
