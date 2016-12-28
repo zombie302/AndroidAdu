@@ -36,6 +36,7 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
     TextView sTx;
     MenuInflater menuInflater;
     Menu menu;
+    Intent i;
 
 
     public boolean onOptionItemSelected(MenuItem item){
@@ -135,6 +136,8 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         else if (DLayout.isDrawerOpen(SLayout)==false && adapterm.isCheckMode==true) {
             adapterm.isCheckMode = false;
             listview.invalidateViews();
+            menu.clear();
+            menuInflater.inflate(R.menu.option_mainlist,menu);
         }
         else
             super.onBackPressed();
@@ -153,7 +156,7 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                     DLayout.openDrawer(SLayout);
                 break;
             case R.id.menu_w:
-                Intent i = new Intent(this,DiaryInsertActivity.class);
+                i = new Intent(this,DiaryInsertActivity.class);
                 startActivity(i);
                 adapterm.update(MDB);
                 break;
@@ -164,8 +167,8 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                 listview.invalidateViews();
                 break;
             case R.id.menu_s:
-                Intent j = new Intent(this,CategoryListActivity.class);
-                startActivity(j);
+                i = new Intent(this,CategoryListActivity.class);
+                startActivity(i);
                 break;
             case R.id.menu_ok:
                 menu.clear();
