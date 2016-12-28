@@ -77,6 +77,11 @@ public class CategoryDiaryListActivity extends AppCompatActivity {
         if(id == R.id.diaryMod){
             ChangeCategory();
         }
+        if(id == R.id.diaryAdd){
+            Intent i = new Intent(this, DiaryInsertActivity.class);
+            startActivity(i);
+
+        }
         return true;
     }
 
