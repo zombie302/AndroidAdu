@@ -48,6 +48,7 @@ public class Adapter extends BaseAdapter {
             if(i.cName.equals(item.cName))
             {
                 itemList.remove(i);
+                break;
             }
         }
     }
