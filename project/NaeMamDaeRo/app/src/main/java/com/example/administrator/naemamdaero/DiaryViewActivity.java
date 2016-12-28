@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.administrator.naemamdaero.database.MyData;
 import com.example.administrator.naemamdaero.database.MyDatabase;
@@ -62,6 +61,9 @@ public class DiaryViewActivity extends AppCompatActivity {
         b.setText(e.getTitle());
         c.setText(e.getContent());
         f.setText(e.getCategory());
+
+        if(e.getCategory().equals(""))
+            f.setVisibility(View.GONE);
     }
 
     public void onButton2Clicked(View v){
@@ -86,6 +88,7 @@ public class DiaryViewActivity extends AppCompatActivity {
                 if(id != -1)
                 {
                     myDatabase.delete(id);
+                    finish();
                 }
                 return true;
 
