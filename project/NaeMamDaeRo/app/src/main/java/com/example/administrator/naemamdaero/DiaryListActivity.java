@@ -162,6 +162,7 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                 i = new Intent(this,DiaryInsertActivity.class);
                 startActivity(i);
                 adapterm.update(MDB);
+                this.setTitle("전체");
                 break;
             case R.id.menu_d:
                 menu.clear();
