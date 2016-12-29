@@ -54,6 +54,8 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
         super.onResume();
 
         adapterm.update(MDB);
+        if(getTitle().equals("전체")!=true)
+            adapterm.someUpdate(sideAdapter1.CG(MDB,getTitle().toString()));
         adapterm.notifyDataSetChanged();
         listview.invalidateViews();
         sideAdapter1.update(MDB);
@@ -92,6 +94,14 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
 
         listview2 = (ListView) findViewById((R.id.ListView_side)) ;
         listview2.setAdapter(sideAdapter1);
+
+        MDB.setOnCategoryChangedListener(new MyDatabase.OnCategoryChangedListener() {
+            @Override
+            public void onChanged(String oldName, String newName) {
+                if(DiaryListActivity.this.getTitle().equals(oldName))
+                    DiaryListActivity.this.setTitle(newName);
+            }
+        });
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

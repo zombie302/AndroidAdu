@@ -366,6 +366,10 @@ public class MyDatabase extends SQLiteOpenHelper {
             update(data.getId(),data.getTitle(),data.getContent(),newName);
         }
 
+        for(OnCategoryChangedListener listener : onCategoryChangedListenerList)
+        {
+            listener.onChanged(oldName, newName);
+        }
         return true;
     }
 
@@ -385,8 +389,24 @@ public class MyDatabase extends SQLiteOpenHelper {
         {
             update(data.getId(),data.getTitle(),data.getContent(),"");
         }
+
+        for(OnCategoryChangedListener listener : onCategoryChangedListenerList)
+        {
+            listener.onChanged(name, "");
+        }
+
         return true;
     }
 
+    public interface OnCategoryChangedListener
+    {
+        public void onChanged(String oldName, String newName);
+    }
 
+    private ArrayList<OnCategoryChangedListener> onCategoryChangedListenerList = new ArrayList<OnCategoryChangedListener>();
+
+    public void setOnCategoryChangedListener(OnCategoryChangedListener onCategoryChangedListener)
+    {
+        this.onCategoryChangedListenerList.add(onCategoryChangedListener);
+    }
 }

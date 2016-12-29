@@ -86,6 +86,13 @@ class cheakAdapter extends BaseAdapter {
             this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
         }
     }
+    public void someUpdate(ArrayList<MyData> arr) {
+        list.clear();
+
+        for (int i = 0; i < arr.size(); i++) {
+            this.addItem(arr.get(i).getId(), arr.get(i).getTitle(), arr.get(i).getContent(), arr.get(i).getTime());
+        }
+    }
 
     public void checkDel(){
         for(int i = 0; i<list.size(); i++){
@@ -302,7 +309,11 @@ class sideAdapter extends BaseAdapter {
         return array;
     }
 
+    public ArrayList<MyData> CG(MyDatabase MDB,String cName){
+        ArrayList<MyData> array =  MDB.searchByCategory(cName);
 
+        return array;
+    }
 
 
 }
