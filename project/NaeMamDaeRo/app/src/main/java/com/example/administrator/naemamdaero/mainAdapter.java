@@ -141,9 +141,17 @@ class cheakAdapter extends BaseAdapter {
 
     public void updateCFilter(String cg, MyDatabase MDB,String key) {
         list.clear();
+        ArrayList<MyData> array;
 
-        if(cg == ""){
-        ArrayList<MyData> array = MDB.searchAll();
+        if(cg == "전체"){
+        array = MDB.searchAll();
+            for (int i = 0; i < array.size(); i++) {
+                if (array.get(i).getContent().contains(key) == true)
+                    this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+            }
+        }
+        else{
+            array = MDB.searchByCategory(cg);
             for (int i = 0; i < array.size(); i++) {
                 if (array.get(i).getContent().contains(key) == true)
                     this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
@@ -153,10 +161,17 @@ class cheakAdapter extends BaseAdapter {
 
     public void updateTCFilter(String cg, MyDatabase MDB,String key) {
         list.clear();
+        ArrayList<MyData> array;
 
-
-        if(cg == "") {
-            ArrayList<MyData> array = MDB.searchAll();
+        if(cg == "전체") {
+            array = MDB.searchAll();
+            for (int i = 0; i < array.size(); i++) {
+                if (array.get(i).getContent().contains(key) == true || array.get(i).getTitle().contains(key) == true)
+                    this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
+            }
+        }
+        else{
+            array = MDB.searchByCategory(cg);
             for (int i = 0; i < array.size(); i++) {
                 if (array.get(i).getContent().contains(key) == true || array.get(i).getTitle().contains(key) == true)
                     this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());

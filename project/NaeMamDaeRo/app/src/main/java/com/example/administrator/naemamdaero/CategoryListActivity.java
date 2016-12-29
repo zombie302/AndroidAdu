@@ -74,6 +74,23 @@ public class CategoryListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        MyDatabase myDB = MyDatabase.getInstance(this);
+        myDB.open();
+
+        ArrayList<String> list = myDB.getCategory();
+
+        adapter = new Adapter(this);
+
+        for(int i = 0; i<list.size(); i++)
+            adapter.addData(list.get(i));
+
+        listView.setAdapter(adapter);
+    }
+
     Menu menu;
 
     @Override
