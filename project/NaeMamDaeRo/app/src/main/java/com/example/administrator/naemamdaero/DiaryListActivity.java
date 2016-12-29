@@ -140,6 +140,7 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
             listview.invalidateViews();
             menu.clear();
             menuInflater.inflate(R.menu.option_mainlist,menu);
+            adapterm.checkDel();
         }
         else
             super.onBackPressed();
@@ -178,12 +179,14 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
                 menuInflater.inflate(R.menu.option_mainlist, menu);
                 adapterm.isCheckMode = false;
                 listview.invalidateViews();
+                adapterm.checkDel();
                 break;
             case R.id.menu_cancle:
                 menu.clear();
                 menuInflater.inflate(R.menu.option_mainlist, menu);
                 adapterm.isCheckMode = false;
                 listview.invalidateViews();
+                adapterm.checkDel();
                 break;
 
         }

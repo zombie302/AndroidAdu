@@ -75,7 +75,6 @@ class sideListViewItem{
 class cheakAdapter extends BaseAdapter {
     public ArrayList<chListViewItem> list = new ArrayList<chListViewItem>();
 
-
     public boolean isCheckMode = false;
 
     public void update(MyDatabase MDB) {
@@ -86,6 +85,13 @@ class cheakAdapter extends BaseAdapter {
         for (int i = 0; i < array.size(); i++) {
             this.addItem(array.get(i).getId(), array.get(i).getTitle(), array.get(i).getContent(), array.get(i).getTime());
         }
+    }
+
+    public void checkDel(){
+        for(int i = 0; i<list.size(); i++){
+            list.get(i).setCheck(false);
+        }
+        this.notifyDataSetChanged();
     }
 
     public void delCheckData(MyDatabase MDB){
@@ -174,6 +180,8 @@ class cheakAdapter extends BaseAdapter {
         TextView titleTextView = (TextView) convertView.findViewById(R.id.textView) ;
         TextView dateTextView = (TextView) convertView.findViewById(R.id.textView2) ;
         CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBox);
+
+        checkBox.setChecked(list.get(position).getCheck());
 
         if(isCheckMode == true) {
             checkBox.setVisibility(View.VISIBLE);
