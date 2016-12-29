@@ -177,6 +177,19 @@ public class CategoryListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if(adapter.bCheckMode == true){
+            this.adapter.setCheckMode(false);
+            this.listView.invalidate();
+            createMenu(R.menu.menu_main, menu);
+            listView.setAdapter(adapter);
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
+
     public void createMenu(int menuRes, Menu menu)
     {
         getMenuInflater().inflate(menuRes, menu);
