@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.administrator.naemamdaero.database.MyData;
 import com.example.administrator.naemamdaero.database.MyDatabase;
@@ -66,10 +67,18 @@ public class DiaryEditActivity extends AppCompatActivity {
                 String e = b.getText().toString();
                 String f = c.getText().toString();
 
-                myDatabase.update(id,d,e,f);
-                myDatabase.printRecord();
 
-                finish();
+                //myDatabase.printRecord();
+
+                if(d.isEmpty() != true && e.isEmpty() != true)
+                {
+                    myDatabase.update(id,d,e,f); // DB에 추가
+                    finish(); //나간다
+                    Toast.makeText(getApplicationContext(),"수정 되었습니다.", Toast.LENGTH_LONG).show();
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"내용을 입력하세요.", Toast.LENGTH_LONG).show();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
