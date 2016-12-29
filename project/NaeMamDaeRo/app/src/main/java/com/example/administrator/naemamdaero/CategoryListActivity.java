@@ -91,6 +91,7 @@ public class CategoryListActivity extends AppCompatActivity {
 
         myDB = MyDatabase.getInstance(this);
         myDB.open();
+        final String unavailable = "전체";
         Log.d("test", "onOptionsItemSelected - 메뉴항목을 클릭했을 때 호출됨");
 
         int id = item.getItemId();
@@ -114,14 +115,20 @@ public class CategoryListActivity extends AppCompatActivity {
                     @Override
                     public void onClose(String a) {
                         CategoryListActivity.this.add = a;
+                        String strCheck = a.replaceAll(" ", "");
 
-                        if(myDB.addCategory(add)==true) {
-                            adapter.addData(add);
+                        if(strCheck.length()==0){
+                            Toast.makeText(getApplicationContext(),"Void Category Name.", Toast.LENGTH_LONG).show();
+                        }
+                        else if(a.equals(unavailable)==true){
+                            Toast.makeText(getApplicationContext(),"Unavailable Category Name.", Toast.LENGTH_LONG).show();
+                        }
+                        else if(myDB.addCategory(add)==false) {
+                            Toast.makeText(getApplicationContext(), "Category Overlap.", Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(getApplicationContext(),"Category Overlap.", Toast.LENGTH_LONG).show();
+                            adapter.addData(add);
                         }
-
                         listView.setAdapter(adapter);
                     }
                 });

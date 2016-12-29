@@ -315,16 +315,47 @@ public class MyDatabase extends SQLiteOpenHelper {
         return categoryList;
     }
 
+    public boolean checkOverlap(String name){
+        ArrayList<String> list = getCategory();
+        for(String data : list){
+            if(data.equals(name)==true){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean addCategory(String name)
     {
-        String SQL = "insert into "+ TB_CATEGORY + " (name) values ('" + name + "');";
-        sqLiteDatabase.execSQL(SQL);
 
-        return true;
+
+        if(checkOverlap(name)!=true){
+
+            if(name.contains("'") == true)
+            {
+                name = name.replace("'","''");
+            }
+
+            String SQL = "insert into "+ TB_CATEGORY + " (name) values ('" + name + "');";
+            sqLiteDatabase.execSQL(SQL);
+            return true;
+        }
+
+        return false;
     }
 
     public boolean updateCategory(String oldName, String newName)
     {
+        if(oldName.contains("'") == true)
+        {
+            oldName = oldName.replace("'","''");
+        }
+
+        if(newName.contains("'") == true)
+        {
+            newName = newName.replace("'","''");
+        }
+
         String SQL = "update "+ TB_CATEGORY + " set name='"+ newName +"' where name='"+oldName+"'";
         sqLiteDatabase.execSQL(SQL);
 
@@ -340,6 +371,11 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     public boolean deleteCategory(String name)
     {
+        if(name.contains("'") == true)
+        {
+            name = name.replace("'","''");
+        }
+
         String SQL = "delete from "+ TB_CATEGORY + " where name='"+name+"'";
         sqLiteDatabase.execSQL(SQL);
 
