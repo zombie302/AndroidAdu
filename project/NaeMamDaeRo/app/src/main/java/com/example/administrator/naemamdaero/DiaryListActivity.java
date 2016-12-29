@@ -55,8 +55,10 @@ public class DiaryListActivity extends AppCompatActivity implements AdapterView.
 
         adapterm.update(MDB);
         adapterm.notifyDataSetChanged();
+        listview.invalidateViews();
         sideAdapter1.update(MDB);
         sideAdapter1.notifyDataSetChanged();
+        listview2.invalidateViews();
     }
 
     @Override

@@ -95,10 +95,15 @@ class cheakAdapter extends BaseAdapter {
     }
 
     public void delCheckData(MyDatabase MDB){
+        int c=0;
         for(int i=list.size()-1; i>=0 ; i--){
-            if(list.get(i).getCheck() == true)
+            if(list.get(i).getCheck() == true) {
                 delData(MDB, i);
+                c++;
+            }
         }
+        if(c==0)
+            return;
         this.update(MDB);
     }
 
