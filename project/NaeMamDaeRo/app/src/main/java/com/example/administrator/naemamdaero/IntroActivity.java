@@ -23,7 +23,7 @@ public class IntroActivity extends AppCompatActivity {
 
             Message a = new Message();
 
-            a.what = percent+10;
+            a.what = percent+1;
 
             if(percent == 100)
             {
@@ -33,7 +33,7 @@ public class IntroActivity extends AppCompatActivity {
                 return;
             }
 
-            handler.sendMessageDelayed(a,1000);
+            handler.sendMessageDelayed(a,1);
 
 
 
@@ -58,8 +58,8 @@ public class IntroActivity extends AppCompatActivity {
         v = (ProgressBar)findViewById(R.id.progressBar);
         Message a = new Message();
 
-        a.what = 10;
-        handler.sendMessageDelayed(a,1000);
+        a.what = 1;
+        handler.sendMessageDelayed(a,1);
 
     }
 }
